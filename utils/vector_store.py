@@ -12,7 +12,7 @@ from typing import Optional
 import faiss
 import numpy as np
 from langchain_core.documents import Document
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from mistralai import Mistral
 
 from .config import (

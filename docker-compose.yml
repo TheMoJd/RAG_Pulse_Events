@@ -1,0 +1,36 @@
+# POC RAG Puls-Events — stack complète (API + frontend)
+# Local: docker compose up --build  → http://localhost
+# VPS: ajouter un reverse proxy TLS (Caddy/Traefik) en front
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: pulsevents-api
+    env_file: .env
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./vector_db:/app/vector_db
+      - ./data:/app/data
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: pulsevents-frontend
+    depends_on:
+      - api
+    ports:
+      - "80:80"
+    restart: unless-stopped

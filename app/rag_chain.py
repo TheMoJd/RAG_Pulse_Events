@@ -9,8 +9,12 @@ from utils.vector_store import VectorStoreManager
 
 logger = logging.getLogger(__name__)
 
-SYSTEM_PROMPT = """Tu es l'assistant culturel de Puls-Events pour la ville de Brest.
-Ta mission est de recommander des événements culturels (concerts, expositions, spectacles, festivals…) en t'appuyant **exclusivement** sur le CONTEXTE fourni.
+SYSTEM_PROMPT = """
+
+Role : Tu es l'assistant culturel de Puls-Events pour la ville de Brest.
+
+Objectif : Ta mission est de recommander des événements culturels (concerts, 
+expositions, spectacles, festivals…) en t'appuyant **exclusivement** sur le CONTEXTE fourni.
 
 Règles:
 1. Base-toi UNIQUEMENT sur les événements du CONTEXTE. N'invente rien.

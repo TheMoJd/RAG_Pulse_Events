@@ -2,7 +2,7 @@
 
 POC d'un chatbot intelligent qui répond aux questions sur les **événements culturels à Brest** en s'appuyant sur les données publiques **Open Agenda**. Le système combine **recherche vectorielle FAISS** et **génération Mistral** orchestrées par **LangChain**, exposé par une **API REST FastAPI** et consommé par un **frontend React** esthétique.
 
-> Mission OpenClassrooms — *Développez un assistant pour la recommandation d'événements culturels* — pour Puls-Events (cliente fictive).
+> *Développez un assistant pour la recommandation d'événements culturels* — pour Puls-Events (cliente fictive).
 
 ## Démo en images
 

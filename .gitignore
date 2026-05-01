@@ -37,3 +37,4 @@ frontend/.vite/
 *.log
 enonce.md
 CLAUDE.md
+docs

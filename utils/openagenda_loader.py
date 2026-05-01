@@ -9,7 +9,7 @@ Endpoint: https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/even
 import json
 import logging
 import time
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
 
@@ -29,40 +29,47 @@ REQUEST_TIMEOUT = 30
 MAX_RETRIES = 3
 
 
-def _build_where_clause(city: str, since_date: str) -> str:
-    """Construit la clause ODSQL pour filtrer par ville et date de début >= since_date."""
-    return f'location_city="{city}" AND firstdate_begin >= date\'{since_date}\''
+def _build_where_clause(city: str) -> str:
+    """Construit la clause ODSQL pour filtrer par ville et ne garder que les événements
+    en cours ou à venir (lastdate_end >= aujourd'hui).
+
+    On utilise `lastdate_end` (et non `firstdate_begin`) pour qu'un festival qui dure
+    plusieurs jours et a déjà commencé reste recommandable jusqu'à sa date de fin.
+    """
+    today_iso = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    return f'location_city="{city}" AND lastdate_end >= date\'{today_iso}\''
 
 
 def fetch_brest_events(
     city: str = TARGET_CITY,
-    since_days: int = SINCE_DAYS,
+    since_days: int = SINCE_DAYS,  # noqa: ARG001 — gardé pour compat ascendante (no-op)
     page_size: int = PAGE_SIZE,
     save_snapshot: bool = True,
     snapshot_dir: Path = RAW_DATA_DIR,
 ) -> list[dict]:
     """
-    Récupère tous les événements Open Agenda pour une ville sur les `since_days` derniers jours
-    et le futur. Pagine jusqu'à épuisement.
+    Récupère tous les événements Open Agenda **en cours ou à venir** pour une ville
+    (lastdate_end >= aujourd'hui). Pagine jusqu'à épuisement.
 
     Args:
         city: nom de la ville (filtre exact sur location_city).
-        since_days: nombre de jours à rétrocéder pour la borne basse.
+        since_days: ignoré (gardé pour compat ascendante). Le filtre temporel est
+            désormais "events futurs uniquement".
         page_size: taille de page (max 100 sur Opendatasoft).
         save_snapshot: si True, écrit data/raw/events_<city>_<date>.json.
         snapshot_dir: répertoire pour le snapshot.
 
     Returns:
-        Liste brute des records Open Agenda.
+        Liste brute des records Open Agenda (futurs ou en cours uniquement).
     """
-    since_date = (datetime.now(timezone.utc) - timedelta(days=since_days)).strftime("%Y-%m-%d")
-    where = _build_where_clause(city, since_date)
+    where = _build_where_clause(city)
 
     all_events: list[dict] = []
     offset = 0
     total_count: Optional[int] = None
 
-    logger.info(f"Récupération des événements pour '{city}' depuis {since_date}...")
+    today_iso = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    logger.info(f"Récupération des événements à venir pour '{city}' (à partir du {today_iso})...")
 
     while True:
         params = {

@@ -11,8 +11,8 @@ type Message = {
 
 const SUGGESTIONS = [
   "Quels concerts à Brest ce week-end ?",
-  "Y a-t-il des expositions au musée des Beaux-Arts ?",
-  "Recommande-moi un spectacle pour enfants",
+  "Quelles expositions à voir prochainement à Brest ?",
+  "Un spectacle pour enfants à venir ?",
   "Festivals à venir à Brest ?",
 ];
 

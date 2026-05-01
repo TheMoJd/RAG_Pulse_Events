@@ -10,7 +10,7 @@ type Message = {
 };
 
 const SUGGESTIONS = [
-  "Quels concerts à Brest ce week-end ?",
+  "Quels concerts à voir prochainement à Brest ?",
   "Quelles expositions à voir prochainement à Brest ?",
   "Un spectacle pour enfants à venir ?",
   "Festivals à venir à Brest ?",

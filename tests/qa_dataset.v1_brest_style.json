@@ -1,0 +1,95 @@
+{
+  "description": "Jeu de test annoté Q/R pour l'évaluation du système RAG Puls-Events sur Paris (printemps + été). Les ground_truths sont rédigés de manière générique car le contenu de l'index Open Agenda évolue chaque semaine. Ils décrivent le type de réponse attendu, pas les événements précis.",
+  "dataset": [
+    {
+      "id": "q1",
+      "question": "Quels concerts à Paris ce week-end ?",
+      "ground_truth": "Plusieurs concerts ont lieu ce week-end à Paris dans des salles variées (Olympia, Bataclan, Philharmonie, Zénith, La Cigale, Cabaret Sauvage, etc.) couvrant différents genres : pop, rock, jazz, classique, électro. Chaque suggestion mentionne le titre, la date, le lieu et un lien Open Agenda.",
+      "category": "thematique"
+    },
+    {
+      "id": "q2",
+      "question": "Quelles expositions sont à voir à Paris cet été ?",
+      "ground_truth": "Plusieurs expositions sont accessibles dans les grands musées parisiens (Louvre, Centre Pompidou, Musée d'Orsay, Grand Palais, Petit Palais, Musée du Quai Branly), couvrant la peinture, la photographie, l'art contemporain ou l'art ancien.",
+      "category": "thematique"
+    },
+    {
+      "id": "q3",
+      "question": "Festivals de musique à Paris en juin ou juillet ?",
+      "ground_truth": "Plusieurs festivals sont programmés en juin/juillet à Paris (par exemple Solidays, Fnac Live, We Love Green ou des éditions parisiennes d'autres festivals). Les recommandations précisent les dates exactes, le lieu et le lien.",
+      "category": "thematique"
+    },
+    {
+      "id": "q4",
+      "question": "Y a-t-il des événements à la Philharmonie de Paris ?",
+      "ground_truth": "La Philharmonie de Paris propose plusieurs concerts à venir (musique classique, jazz, musiques du monde, programmes éducatifs) ainsi que des expositions thématiques. Les recommandations précisent l'œuvre, le compositeur ou l'artiste, la date et le tarif si disponible.",
+      "category": "lieu_specifique"
+    },
+    {
+      "id": "q5",
+      "question": "Quelles expositions au Centre Pompidou ?",
+      "ground_truth": "Le Centre Pompidou propose plusieurs expositions à venir, couvrant l'art moderne et contemporain, la photographie, le design, ou des rétrospectives d'artistes majeurs. Les recommandations précisent le titre, la période d'ouverture et un lien Open Agenda.",
+      "category": "lieu_specifique"
+    },
+    {
+      "id": "q6",
+      "question": "Que se passe-t-il au Grand Palais prochainement ?",
+      "ground_truth": "Le Grand Palais (ou ses espaces dédiés comme le Grand Palais Éphémère) accueille plusieurs événements à venir : expositions blockbuster, foires d'art (FIAC, Paris Photo), salons, ou compétitions sportives selon la période.",
+      "category": "lieu_specifique"
+    },
+    {
+      "id": "q7",
+      "question": "Y a-t-il des spectacles de danse à voir à Paris ?",
+      "ground_truth": "Plusieurs représentations de danse sont programmées à Paris (Opéra Bastille, Palais Garnier, Théâtre du Châtelet, Théâtre de la Ville, Théâtre des Champs-Élysées) — ballet classique, danse contemporaine ou créations chorégraphiques.",
+      "category": "thematique"
+    },
+    {
+      "id": "q8",
+      "question": "Y a-t-il un concert de rap à Paris cet été ?",
+      "ground_truth": "Plusieurs concerts de rap ou hip-hop sont programmés à Paris cet été dans des salles comme l'Accor Arena, le Zénith, l'Olympia, le Bataclan, ou lors de festivals dédiés. Si aucun n'est trouvé dans la base, l'assistant le précise et propose d'élargir aux autres genres musicaux.",
+      "category": "thematique"
+    },
+    {
+      "id": "q9",
+      "question": "Que faire à Paris en famille avec des enfants ?",
+      "ground_truth": "Plusieurs événements adaptés aux familles sont disponibles : spectacles jeune public au Théâtre du Châtelet ou à la Cité de la Musique, animations à la Cité des Sciences, expositions interactives au Palais de la Découverte, ateliers dans les bibliothèques municipales ou parcs.",
+      "category": "recommandation_libre"
+    },
+    {
+      "id": "q10",
+      "question": "Recommande-moi une sortie pour amateur d'art moderne",
+      "ground_truth": "Plusieurs options : expositions au Centre Pompidou, Musée d'Art Moderne de la Ville de Paris (MAM), Palais de Tokyo, Fondation Louis Vuitton ou Bourse de Commerce - Pinault Collection. Les suggestions précisent le titre de l'exposition, la période et un lien.",
+      "category": "recommandation_libre"
+    },
+    {
+      "id": "q11",
+      "question": "Y a-t-il des visites guidées à Notre-Dame ou autour ?",
+      "ground_truth": "Plusieurs visites guidées du quartier de l'Île de la Cité, de la Sainte-Chapelle, ou de la cathédrale Notre-Dame de Paris (selon l'avancée de la réouverture) sont proposées. Les recommandations précisent le point de rendez-vous, la durée et le tarif.",
+      "category": "thematique"
+    },
+    {
+      "id": "q12",
+      "question": "Quels événements gratuits à Paris prochainement ?",
+      "ground_truth": "Plusieurs événements gratuits sont accessibles : concerts en plein air dans les parcs, expositions dans les musées municipaux les premiers dimanches du mois, animations dans les bibliothèques, performances de rue, ou la Fête de la Musique le 21 juin.",
+      "category": "thematique"
+    },
+    {
+      "id": "q13",
+      "question": "Y a-t-il des projections de films en plein air cet été à Paris ?",
+      "ground_truth": "Le Cinéma en plein air de La Villette propose chaque été des projections gratuites sur grand écran. D'autres événements similaires existent dans les parcs parisiens ou en bord de Seine pendant Paris Plages.",
+      "category": "thematique"
+    },
+    {
+      "id": "q14",
+      "question": "Quels événements littéraires ou rencontres avec des auteurs à Paris ?",
+      "ground_truth": "Plusieurs rencontres d'auteurs, signatures, lectures publiques ou cafés littéraires sont organisés à Paris (BNF, librairies indépendantes, Maison de la Poésie, médiathèques municipales). Les recommandations précisent l'auteur, le lieu et la date.",
+      "category": "thematique"
+    },
+    {
+      "id": "q15",
+      "question": "Quelle est la météo à Paris demain ?",
+      "ground_truth": "Cette question est hors du domaine couvert par l'assistant. L'assistant culturel Puls-Events ne répond qu'aux questions sur les événements culturels à venir à Paris et invite l'utilisateur à reformuler sa requête sur ce thème.",
+      "category": "hors_domaine"
+    }
+  ]
+}

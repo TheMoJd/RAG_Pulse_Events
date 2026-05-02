@@ -1,95 +1,140 @@
 {
-  "description": "Jeu de test annoté Q/R pour l'évaluation du système RAG Puls-Events sur Paris (printemps + été). Les ground_truths sont rédigés de manière générique car le contenu de l'index Open Agenda évolue chaque semaine. Ils décrivent le type de réponse attendu, pas les événements précis.",
+  "description": "DRAFT de qa_dataset généré depuis les réponses du bot. À RÉVISER MANUELLEMENT avant remplacement de qa_dataset.json. Voir _review_instructions sur chaque entrée.",
   "dataset": [
     {
       "id": "q1",
       "question": "Quels concerts à Paris ce week-end ?",
-      "ground_truth": "Plusieurs concerts ont lieu ce week-end à Paris dans des salles variées (Olympia, Bataclan, Philharmonie, Zénith, La Cigale, Cabaret Sauvage, etc.) couvrant différents genres : pop, rock, jazz, classique, électro. Chaque suggestion mentionne le titre, la date, le lieu et un lien Open Agenda.",
-      "category": "thematique"
+      "ground_truth": "AhBon!? Ernesto & Soto\n Samedi 9 mai, 19h30, 21h30, 22h30 · JASS CLUB\nSoirée électro et improvisation avec AhBon!?, Ernesto en live réinventé, et une jam session dancefloor.\n [En savoir plus](https://openagenda.com/jassclub-paris/events/ahbon-ernesto-and-soto)\nJASS Session / Jam Jazz\n Vendredi 29 mai, 22h30 · JASS CLUB\nRendez-vous hebdomadaire pour une jam session jazz ouverte à tous les musiciens.\n [En savoir plus](https://openagenda.com/jassclub-paris/events/virginie-daide-meets-hugo-lippi)\nAnalogik Stomp Machine / Ft. Margherita Gruden & Lilou Claverie\n Samedi 30 mai, 19h30, 21h30, 22h30 · JASS CLUB\nJazz moderne et électronique avec Pierre Lapprand et ses invités, suivi d’une jam session.\n [En savoir plus](https://openagenda.com/jassclub-paris/events/analogik-stomp-machine-ft-margherita-gruden-and-lilou-claverie)",
+      "category": "thematique",
+      "_review_status": "DRAFT",
+      "_review_instructions": "Vérifier que ground_truth décrit la réponse IDÉALE. Corriger si le bot s'est trompé. Puis supprimer ce champ et `_original_ground_truth`.",
+      "_original_ground_truth": "Plusieurs concerts ont lieu ce week-end à Paris dans des salles variées (Olympia, Bataclan, Philharmonie, Zénith, La Cigale, Cabaret Sauvage, etc.) couvrant différents genres : pop, rock, jazz, classique, électro. Chaque suggestion mentionne le titre, la date, le lieu et un lien Open Agenda."
     },
     {
       "id": "q2",
       "question": "Quelles expositions sont à voir à Paris cet été ?",
-      "ground_truth": "Plusieurs expositions sont accessibles dans les grands musées parisiens (Louvre, Centre Pompidou, Musée d'Orsay, Grand Palais, Petit Palais, Musée du Quai Branly), couvrant la peinture, la photographie, l'art contemporain ou l'art ancien.",
-      "category": "thematique"
+      "ground_truth": "Les expositions\n Jusqu'au 24 octobre 2027 · Cité des sciences et de l'Industrie\nExploration interactive des sciences et techniques contemporaines sur 30 000 m².\n [En savoir plus](https://openagenda.com/echosciences/events/explora_507)\nLes Voix se lèvent\n Jusqu'au 11 juillet · Cité internationale des arts\nExposition immersive mêlant arts visuels et performances vocales (nocturnes le mercredi).\n [En savoir plus](https://openagenda.com/planlibre/events/les-voix-se-levent)",
+      "category": "thematique",
+      "_review_status": "DRAFT",
+      "_review_instructions": "Vérifier que ground_truth décrit la réponse IDÉALE. Corriger si le bot s'est trompé. Puis supprimer ce champ et `_original_ground_truth`.",
+      "_original_ground_truth": "Plusieurs expositions sont accessibles dans les grands musées parisiens (Louvre, Centre Pompidou, Musée d'Orsay, Grand Palais, Petit Palais, Musée du Quai Branly), couvrant la peinture, la photographie, l'art contemporain ou l'art ancien."
     },
     {
       "id": "q3",
       "question": "Festivals de musique à Paris en juin ou juillet ?",
-      "ground_truth": "Plusieurs festivals sont programmés en juin/juillet à Paris (par exemple Solidays, Fnac Live, We Love Green ou des éditions parisiennes d'autres festivals). Les recommandations précisent les dates exactes, le lieu et le lien.",
-      "category": "thematique"
+      "ground_truth": "Voici une sélection de festivals et événements musicaux à Paris en juin 2026 (dans le cadre de la Fête de la Musique) :\nFaites de la musique\n Dimanche 21 juin, 14h30 · Rue Julien Lacroix (20e)\nUn voyage sonore entre house US et rythmes brésiliens, avec des DJs passionnés.\n [En savoir plus](https://openagenda.com/fetedelamusique2026/events/faites-de-la-musique-6492151)\nFestival Seine en scène\n Dimanche 21 juin, 17h00 · Place Dauphine (1er)\n5ème édition avec des artistes variés, des tubes intemporels aux créations originales.\n [En savoir plus](https://openagenda.com/fetedelamusique2026/events/festival-seine-en-scene)\nMazurcade – Musiques traditionnelles\n Dimanche 21 juin, 16h00 · Parc Montsouris (14e)\nBal festif avec des musiques de terroirs, animé par le groupe Mazurcade.\n [En savoir plus](https://openagenda.com/fetedelamusique2026/events/mazurcade-musiques-traditionnelles-1452048)\nWine, Food and Music\n Dimanche 21 juin, 11h00 · Les caves de Reuilly (12e)\nJazz/soul et DJ set disco-house dans un cadre convivial autour de vin et gastronomie.\n [En savoir plus](https://openagenda.com/fetedelamusique2026/events/wine-food-and-music)\nAucun événement en juillet n’est référencé pour l’instant.",
+      "category": "thematique",
+      "_review_status": "DRAFT",
+      "_review_instructions": "Vérifier que ground_truth décrit la réponse IDÉALE. Corriger si le bot s'est trompé. Puis supprimer ce champ et `_original_ground_truth`.",
+      "_original_ground_truth": "Plusieurs festivals sont programmés en juin/juillet à Paris (par exemple Solidays, Fnac Live, We Love Green ou des éditions parisiennes d'autres festivals). Les recommandations précisent les dates exactes, le lieu et le lien."
     },
     {
       "id": "q4",
       "question": "Y a-t-il des événements à la Philharmonie de Paris ?",
-      "ground_truth": "La Philharmonie de Paris propose plusieurs concerts à venir (musique classique, jazz, musiques du monde, programmes éducatifs) ainsi que des expositions thématiques. Les recommandations précisent l'œuvre, le compositeur ou l'artiste, la date et le tarif si disponible.",
-      "category": "lieu_specifique"
+      "ground_truth": "Visite libre de la collection du Musée de la musique\n Samedi 23 mai, 19h30 · Cité de la musique - Musée de la musique\nDécouvrez près de 9 000 instruments et œuvres d’art, du XVIe siècle à nos jours, dans un parcours renouvelé.\n [En savoir plus](https://openagenda.com/culture/events/visite-libre-de-la-collection-du-musee-de-la-musique)",
+      "category": "lieu_specifique",
+      "_review_status": "DRAFT",
+      "_review_instructions": "Vérifier que ground_truth décrit la réponse IDÉALE. Corriger si le bot s'est trompé. Puis supprimer ce champ et `_original_ground_truth`.",
+      "_original_ground_truth": "La Philharmonie de Paris propose plusieurs concerts à venir (musique classique, jazz, musiques du monde, programmes éducatifs) ainsi que des expositions thématiques. Les recommandations précisent l'œuvre, le compositeur ou l'artiste, la date et le tarif si disponible."
     },
     {
       "id": "q5",
       "question": "Quelles expositions au Centre Pompidou ?",
-      "ground_truth": "Le Centre Pompidou propose plusieurs expositions à venir, couvrant l'art moderne et contemporain, la photographie, le design, ou des rétrospectives d'artistes majeurs. Les recommandations précisent le titre, la période d'ouverture et un lien Open Agenda.",
-      "category": "lieu_specifique"
+      "ground_truth": "Je n'ai pas trouvé d'expositions à venir au Centre Pompidou dans notre base actuelle.\nTu peux élargir ta recherche aux autres lieux culturels parisiens ou consulter directement le site du Centre Pompidou pour leur programmation.",
+      "category": "lieu_specifique",
+      "_review_status": "DRAFT",
+      "_review_instructions": "Vérifier que ground_truth décrit la réponse IDÉALE. Corriger si le bot s'est trompé. Puis supprimer ce champ et `_original_ground_truth`.",
+      "_original_ground_truth": "Le Centre Pompidou propose plusieurs expositions à venir, couvrant l'art moderne et contemporain, la photographie, le design, ou des rétrospectives d'artistes majeurs. Les recommandations précisent le titre, la période d'ouverture et un lien Open Agenda."
     },
     {
       "id": "q6",
       "question": "Que se passe-t-il au Grand Palais prochainement ?",
-      "ground_truth": "Le Grand Palais (ou ses espaces dédiés comme le Grand Palais Éphémère) accueille plusieurs événements à venir : expositions blockbuster, foires d'art (FIAC, Paris Photo), salons, ou compétitions sportives selon la période.",
-      "category": "lieu_specifique"
+      "ground_truth": "100 % jeux au Salon Seine !\n Samedi 23 mai, 12h00 · Grand Palais\nLudothèque éphémère pour petits et grands : jeux de société, d’adresse, de construction et vidéo.\n [En savoir plus](https://openagenda.com/culture/events/100-percent-jeux-au-salon-seine)\nNocturne de l'exposition « Nan Goldin, This Will Not End Well »\n Samedi 23 mai, 20h00 · Grand Palais\nRétrospective immersive des vidéos et diaporamas de l’icône de la photographie contemporaine.\n [En savoir plus](https://openagenda.com/culture/events/nocturne-de-lexposition-nan-goldin-this-will-not-end-well)",
+      "category": "lieu_specifique",
+      "_review_status": "DRAFT",
+      "_review_instructions": "Vérifier que ground_truth décrit la réponse IDÉALE. Corriger si le bot s'est trompé. Puis supprimer ce champ et `_original_ground_truth`.",
+      "_original_ground_truth": "Le Grand Palais (ou ses espaces dédiés comme le Grand Palais Éphémère) accueille plusieurs événements à venir : expositions blockbuster, foires d'art (FIAC, Paris Photo), salons, ou compétitions sportives selon la période."
     },
     {
       "id": "q7",
       "question": "Y a-t-il des spectacles de danse à voir à Paris ?",
-      "ground_truth": "Plusieurs représentations de danse sont programmées à Paris (Opéra Bastille, Palais Garnier, Théâtre du Châtelet, Théâtre de la Ville, Théâtre des Champs-Élysées) — ballet classique, danse contemporaine ou créations chorégraphiques.",
-      "category": "thematique"
+      "ground_truth": "La danse en Révolution !\n Samedi 23 mai à 20h et 21h · Cité de l'architecture et du patrimoine\nPerformances inspirées de Loïe Fuller, Isadora Duncan et Mary Wigman par des élèves danseurs et musiciens.\n [En savoir plus](https://openagenda.com/culture/events/la-danse-en-revolution)\nDanser\n Jusqu'au 3 mai 2026 · Cité des sciences et de l'Industrie\nExposition immersive où la danse devient une expérience collective et créative pour tous.\n [En savoir plus](https://openagenda.com/echosciences/events/danser)",
+      "category": "thematique",
+      "_review_status": "DRAFT",
+      "_review_instructions": "Vérifier que ground_truth décrit la réponse IDÉALE. Corriger si le bot s'est trompé. Puis supprimer ce champ et `_original_ground_truth`.",
+      "_original_ground_truth": "Plusieurs représentations de danse sont programmées à Paris (Opéra Bastille, Palais Garnier, Théâtre du Châtelet, Théâtre de la Ville, Théâtre des Champs-Élysées) — ballet classique, danse contemporaine ou créations chorégraphiques."
     },
     {
       "id": "q8",
       "question": "Y a-t-il un concert de rap à Paris cet été ?",
-      "ground_truth": "Plusieurs concerts de rap ou hip-hop sont programmés à Paris cet été dans des salles comme l'Accor Arena, le Zénith, l'Olympia, le Bataclan, ou lors de festivals dédiés. Si aucun n'est trouvé dans la base, l'assistant le précise et propose d'élargir aux autres genres musicaux.",
-      "category": "thematique"
+      "ground_truth": "Je n'ai pas trouvé d'événement de rap à venir à Paris dans notre base actuelle pour cet été.\nTu peux essayer d'élargir aux autres genres musicaux comme le jazz-funk avec Earth, Wind & Fire Tribute! ou les musiques latines avec Vamos Ya!, ou encore explorer les concerts gratuits de la Fête de la Musique.",
+      "category": "thematique",
+      "_review_status": "DRAFT",
+      "_review_instructions": "Vérifier que ground_truth décrit la réponse IDÉALE. Corriger si le bot s'est trompé. Puis supprimer ce champ et `_original_ground_truth`.",
+      "_original_ground_truth": "Plusieurs concerts de rap ou hip-hop sont programmés à Paris cet été dans des salles comme l'Accor Arena, le Zénith, l'Olympia, le Bataclan, ou lors de festivals dédiés. Si aucun n'est trouvé dans la base, l'assistant le précise et propose d'élargir aux autres genres musicaux."
     },
     {
       "id": "q9",
       "question": "Que faire à Paris en famille avec des enfants ?",
-      "ground_truth": "Plusieurs événements adaptés aux familles sont disponibles : spectacles jeune public au Théâtre du Châtelet ou à la Cité de la Musique, animations à la Cité des Sciences, expositions interactives au Palais de la Découverte, ateliers dans les bibliothèques municipales ou parcs.",
-      "category": "recommandation_libre"
+      "ground_truth": "Voici quelques idées d'événements à venir pour une sortie en famille à Paris :\nDimanche au Vert en famille avec enfants de 3 à 10 ans\n Jusqu'au 7 juin 2026, certains dimanches · Parc des Buttes-Chaumont\nDécouverte ludique de la nature avec des activités adaptées aux petits explorateurs.\n [Lien](https://openagenda.com/econature/events/decouverte-nature-en-famille-avec-enfants-de-2-a-10-ans-paris-19)\nCité des enfants 5-10 ans\n Jusqu'au 30 août 2026 · Cité des sciences et de l'Industrie\nParcours interactif avec jeux d'eau, fête foraine et ateliers créatifs pour éveiller la curiosité.\n [Lien](https://openagenda.com/echosciences/events/cite-des-enfants-510-ans-8339706)\nVisite libre de la cité des enfants 5/10 ans\n Samedi 23 mai, 18h15 · Cité des sciences et de l’industrie\nAccès gratuit aux cinq univers de la Cité des enfants pour jouer et explorer en famille.\n [Lien](https://openagenda.com/culture/events/visite-libre-de-la-cite-des-enfants-510-ans)\nConférence Cocktail & Dédicace | Téléphones Maison\n Lundi 18 mai, 19h00 · Neoma Business School\nÉchange sur la gestion du numérique en famille, suivi d'un cocktail convivial.\n [Lien](https://openagenda.com/g9plus/events/conference-cocktail-and-dedicace-or-telephones-maison-reprendre-le-controle-du-numerique-en-famille)",
+      "category": "recommandation_libre",
+      "_review_status": "DRAFT",
+      "_review_instructions": "Vérifier que ground_truth décrit la réponse IDÉALE. Corriger si le bot s'est trompé. Puis supprimer ce champ et `_original_ground_truth`.",
+      "_original_ground_truth": "Plusieurs événements adaptés aux familles sont disponibles : spectacles jeune public au Théâtre du Châtelet ou à la Cité de la Musique, animations à la Cité des Sciences, expositions interactives au Palais de la Découverte, ateliers dans les bibliothèques municipales ou parcs."
     },
     {
       "id": "q10",
       "question": "Recommande-moi une sortie pour amateur d'art moderne",
-      "ground_truth": "Plusieurs options : expositions au Centre Pompidou, Musée d'Art Moderne de la Ville de Paris (MAM), Palais de Tokyo, Fondation Louis Vuitton ou Bourse de Commerce - Pinault Collection. Les suggestions précisent le titre de l'exposition, la période et un lien.",
-      "category": "recommandation_libre"
+      "ground_truth": "Soto : La Traversée\n Samedi 23 mai, 19h00 · Cité de l'architecture et du patrimoine\nDécouvrez l’œuvre immersive Soto. La Traversée, une expérience sensorielle entre art et architecture.\n [En savoir plus](https://openagenda.com/culture/events/soto-la-traversee)\nVisites découvertes des collections du MAM Paris\n Samedi 23 mai, 20h00 · Musée d'art moderne de Paris\nExplorez les collections permanentes du MAM lors de visites guidées à heures fixes (20h à 22h).\n [En savoir plus](https://openagenda.com/culture/events/visites-decouvertes-des-collections-du-mam-paris-6323855)\nVisite flash : découverte de la galerie d’architecture contemporaine\n Samedi 23 mai, 19h30 · Cité de l'architecture et du patrimoine\nCourtes présentations des œuvres emblématiques, dont l’Unité d’habitation de Le Corbusier.\n [En savoir plus](https://openagenda.com/culture/events/visite-flash-decouverte-de-la-galerie-darchitecture-contemporaine)",
+      "category": "recommandation_libre",
+      "_review_status": "DRAFT",
+      "_review_instructions": "Vérifier que ground_truth décrit la réponse IDÉALE. Corriger si le bot s'est trompé. Puis supprimer ce champ et `_original_ground_truth`.",
+      "_original_ground_truth": "Plusieurs options : expositions au Centre Pompidou, Musée d'Art Moderne de la Ville de Paris (MAM), Palais de Tokyo, Fondation Louis Vuitton ou Bourse de Commerce - Pinault Collection. Les suggestions précisent le titre de l'exposition, la période et un lien."
     },
     {
       "id": "q11",
       "question": "Y a-t-il des visites guidées à Notre-Dame ou autour ?",
-      "ground_truth": "Plusieurs visites guidées du quartier de l'Île de la Cité, de la Sainte-Chapelle, ou de la cathédrale Notre-Dame de Paris (selon l'avancée de la réouverture) sont proposées. Les recommandations précisent le point de rendez-vous, la durée et le tarif.",
-      "category": "thematique"
+      "ground_truth": "Voici deux visites guidées à venir autour de Notre-Dame et de l'Île de la Cité :\nVisite \"Dessous-dessus\"\n 13 et 14 juin · Crypte Archéologique de l'Île de la Cité\nExploration des vestiges archéologiques de l'île, du parvis à la cathédrale Notre-Dame.\n [En savoir plus](https://openagenda.com/jea-2026/events/visite-dessous-dessus)\nVisite : Découverte de la Crypte et de l'exposition\n 13 et 14 juin · Crypte Archéologique de l'Île de la Cité\nDécouverte des vestiges et de l'exposition Dans la Seine : objets trouvés de la Préhistoire à nos jours.\n [En savoir plus](https://openagenda.com/jea-2026/events/visite-decouverte-de-la-crypte-et-de-lexposition)",
+      "category": "thematique",
+      "_review_status": "DRAFT",
+      "_review_instructions": "Vérifier que ground_truth décrit la réponse IDÉALE. Corriger si le bot s'est trompé. Puis supprimer ce champ et `_original_ground_truth`.",
+      "_original_ground_truth": "Plusieurs visites guidées du quartier de l'Île de la Cité, de la Sainte-Chapelle, ou de la cathédrale Notre-Dame de Paris (selon l'avancée de la réouverture) sont proposées. Les recommandations précisent le point de rendez-vous, la durée et le tarif."
     },
     {
       "id": "q12",
       "question": "Quels événements gratuits à Paris prochainement ?",
-      "ground_truth": "Plusieurs événements gratuits sont accessibles : concerts en plein air dans les parcs, expositions dans les musées municipaux les premiers dimanches du mois, animations dans les bibliothèques, performances de rue, ou la Fête de la Musique le 21 juin.",
-      "category": "thematique"
+      "ground_truth": "Nocturne gratuite exceptionnelle aux Étincelles\n Samedi 23 mai, 18h00 · Cité des sciences et de l'Industrie\nSoirée spéciale avec accès libre aux expositions et animations scientifiques.\n [En savoir plus](https://openagenda.com/echosciences/events/nocturne-gratuite-exceptionnelle-aux-etincelles)\nNocturne gratuite et exceptionnelle aux Étincelles du Palais de la découverte\n Samedi 23 mai, 18h00 · Étincelles du Palais de la découverte\nExposés interactifs, démonstrations et rencontres avec des chercheurs.\n [En savoir plus](https://openagenda.com/culture/events/nocturne-exceptionnelle-gratuite-aux-etincelles)\nVisite libre du Musée du quai Branly - Jacques Chirac\n Samedi 23 mai, 18h00 · Musée du Quai Branly - Jacques Chirac\nAccès gratuit aux collections, concerts, contes et animations festives.\n [En savoir plus](https://openagenda.com/culture/events/la-nuit-europeenne-des-musees-au-musee-du-quai-branly-2026)",
+      "category": "thematique",
+      "_review_status": "DRAFT",
+      "_review_instructions": "Vérifier que ground_truth décrit la réponse IDÉALE. Corriger si le bot s'est trompé. Puis supprimer ce champ et `_original_ground_truth`.",
+      "_original_ground_truth": "Plusieurs événements gratuits sont accessibles : concerts en plein air dans les parcs, expositions dans les musées municipaux les premiers dimanches du mois, animations dans les bibliothèques, performances de rue, ou la Fête de la Musique le 21 juin."
     },
     {
       "id": "q13",
       "question": "Y a-t-il des projections de films en plein air cet été à Paris ?",
-      "ground_truth": "Le Cinéma en plein air de La Villette propose chaque été des projections gratuites sur grand écran. D'autres événements similaires existent dans les parcs parisiens ou en bord de Seine pendant Paris Plages.",
-      "category": "thematique"
+      "ground_truth": "19e festival des Canotiers\n 10 - 13 juin · Parvis de l'église de Ménilmontant\nCinéma et concerts en plein air dans un cadre convivial, gratuit et typique de Ménilmontant.\n [En savoir plus](https://openagenda.com/unidivers-oui-sortir/events/19e-festival-des-canotiers)\nJe n'ai pas trouvé d'autres projections en plein air spécifiquement estivales (juillet/août) dans notre base actuelle. Tu peux explorer les festivals de quartier ou les cinémas en extérieur comme Parc de la Villette ou La Campagne à Paris pour plus d'options.",
+      "category": "thematique",
+      "_review_status": "DRAFT",
+      "_review_instructions": "Vérifier que ground_truth décrit la réponse IDÉALE. Corriger si le bot s'est trompé. Puis supprimer ce champ et `_original_ground_truth`.",
+      "_original_ground_truth": "Le Cinéma en plein air de La Villette propose chaque été des projections gratuites sur grand écran. D'autres événements similaires existent dans les parcs parisiens ou en bord de Seine pendant Paris Plages."
     },
     {
       "id": "q14",
       "question": "Quels événements littéraires ou rencontres avec des auteurs à Paris ?",
-      "ground_truth": "Plusieurs rencontres d'auteurs, signatures, lectures publiques ou cafés littéraires sont organisés à Paris (BNF, librairies indépendantes, Maison de la Poésie, médiathèques municipales). Les recommandations précisent l'auteur, le lieu et la date.",
-      "category": "thematique"
+      "ground_truth": "BALZAC, DE SALON EN SALON. Chez Madame de Récamier\n Samedi 23 mai, 19h15 · Maison de Balzac\nPlongez dans les salons littéraires du XIXe siècle avec lectures et musique, autour de Balzac et Juliette Récamier.\n [En savoir plus](https://openagenda.com/culture/events/balzac-de-salon-en-salon)\nBALZAC, DE SALON EN SALON. Chez Charles Nodier\n Samedi 23 mai, 20h00 · Maison de Balzac\nDécouvrez l’ambiance des cénacles romantiques, entre débats littéraires et performances musicales.\n [En savoir plus](https://openagenda.com/culture/events/balzac-de-salon-en-salon-chez-charles-nodier)\nLe vélo, une solution ! – Rencontre et dédicace\n Mercredi 20 mai, 19h00 · L’Académie du Climat\nRencontre avec des auteurs autour de livres sur le vélo et l’écologie, avec dédicaces.\n [En savoir plus](https://openagenda.com/maiavelo/events/le-velo-une-solution-soiree-a-lacademie-du-climat)",
+      "category": "thematique",
+      "_review_status": "DRAFT",
+      "_review_instructions": "Vérifier que ground_truth décrit la réponse IDÉALE. Corriger si le bot s'est trompé. Puis supprimer ce champ et `_original_ground_truth`.",
+      "_original_ground_truth": "Plusieurs rencontres d'auteurs, signatures, lectures publiques ou cafés littéraires sont organisés à Paris (BNF, librairies indépendantes, Maison de la Poésie, médiathèques municipales). Les recommandations précisent l'auteur, le lieu et la date."
     },
     {
       "id": "q15",
       "question": "Quelle est la météo à Paris demain ?",
-      "ground_truth": "Cette question est hors du domaine couvert par l'assistant. L'assistant culturel Puls-Events ne répond qu'aux questions sur les événements culturels à venir à Paris et invite l'utilisateur à reformuler sa requête sur ce thème.",
-      "category": "hors_domaine"
+      "ground_truth": "Je suis spécialisé dans les événements culturels à Paris, je ne peux pas t'aider sur ce sujet.",
+      "category": "hors_domaine",
+      "_review_status": "DRAFT",
+      "_review_instructions": "Vérifier que ground_truth décrit la réponse IDÉALE. Corriger si le bot s'est trompé. Puis supprimer ce champ et `_original_ground_truth`.",
+      "_original_ground_truth": "Cette question est hors du domaine couvert par l'assistant. L'assistant culturel Puls-Events ne répond qu'aux questions sur les événements culturels à venir à Paris et invite l'utilisateur à reformuler sa requête sur ce thème."
     }
   ]
 }

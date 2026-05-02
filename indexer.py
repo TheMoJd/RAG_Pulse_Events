@@ -1,28 +1,29 @@
 """
-CLI d'indexation: récupère les événements Open Agenda pour Brest, les vectorise via Mistral
-et construit l'index FAISS persisté dans `vector_db/`.
+CLI d'indexation: récupère les événements Open Agenda pour la ville cible
+(Paris par défaut), les vectorise via Mistral et construit l'index FAISS
+persisté dans `vector_db/`.
 
 Usage:
-    python indexer.py                       # fetch live + index
-    python indexer.py --use-snapshot        # repart du dernier snapshot data/raw/
-    python indexer.py --since-days 180      # fenêtre temporelle personnalisée
-    python indexer.py --city "Rennes"       # autre ville (override .env)
+    python indexer.py                          # fetch live + index
+    python indexer.py --use-snapshot           # repart du dernier snapshot data/raw/
+    python indexer.py --lookahead-days 60      # fenêtre d'anticipation personnalisée
+    python indexer.py --city "Lyon"            # autre ville (override .env)
 """
 import argparse
 import logging
 import sys
 from pathlib import Path
 
-from utils.config import RAW_DATA_DIR, SINCE_DAYS, TARGET_CITY
+from utils.config import LOOKAHEAD_DAYS, RAW_DATA_DIR, TARGET_CITY
 from utils.openagenda_loader import (
     events_to_documents,
-    fetch_brest_events,
+    fetch_city_events,
     load_latest_snapshot,
 )
 from utils.vector_store import VectorStoreManager
 
 
-def run_indexing(city: str, since_days: int, use_snapshot: bool) -> int:
+def run_indexing(city: str, lookahead_days: int, use_snapshot: bool) -> int:
     """Pipeline complet: events → documents → chunks → embeddings → FAISS."""
     if use_snapshot:
         events = load_latest_snapshot(RAW_DATA_DIR)
@@ -30,7 +31,7 @@ def run_indexing(city: str, since_days: int, use_snapshot: bool) -> int:
             logging.error(f"Aucun snapshot trouvé dans {RAW_DATA_DIR}. Lance sans --use-snapshot.")
             return 0
     else:
-        events = fetch_brest_events(city=city, since_days=since_days, save_snapshot=True)
+        events = fetch_city_events(city=city, lookahead_days=lookahead_days, save_snapshot=True)
 
     if not events:
         logging.warning("Aucun événement à indexer.")
@@ -54,12 +55,12 @@ def main() -> int:
     )
 
     parser = argparse.ArgumentParser(description="Indexer Puls-Events RAG")
-    parser.add_argument("--city", default=TARGET_CITY, help="Ville cible (par défaut: Brest)")
+    parser.add_argument("--city", default=TARGET_CITY, help=f"Ville cible (par défaut: {TARGET_CITY})")
     parser.add_argument(
-        "--since-days",
+        "--lookahead-days",
         type=int,
-        default=SINCE_DAYS,
-        help="Nombre de jours d'historique (par défaut: 365)",
+        default=LOOKAHEAD_DAYS,
+        help=f"Fenêtre d'anticipation en jours (par défaut: {LOOKAHEAD_DAYS})",
     )
     parser.add_argument(
         "--use-snapshot",
@@ -70,10 +71,10 @@ def main() -> int:
 
     logging.info(f"=== Indexation Puls-Events ===")
     logging.info(f"  ville: {args.city}")
-    logging.info(f"  fenêtre: {args.since_days} jours")
+    logging.info(f"  fenêtre: {args.lookahead_days} jours à venir")
     logging.info(f"  source: {'snapshot local' if args.use_snapshot else 'API live'}")
 
-    n = run_indexing(args.city, args.since_days, args.use_snapshot)
+    n = run_indexing(args.city, args.lookahead_days, args.use_snapshot)
     if n > 0:
         logging.info(f"✅ Indexation terminée: {n} chunks dans l'index FAISS.")
         return 0

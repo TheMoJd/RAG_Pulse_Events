@@ -10,16 +10,16 @@ type Message = {
 };
 
 const SUGGESTIONS = [
-  "Quels concerts à voir prochainement à Brest ?",
-  "Quelles expositions à voir prochainement à Brest ?",
-  "Un spectacle pour enfants à venir ?",
-  "Festivals à venir à Brest ?",
+  "Quels concerts à voir à Paris ce week-end ?",
+  "Quelles expositions à voir à Paris cet été ?",
+  "Festivals de musique à Paris ce printemps ?",
+  "Que faire à Paris en famille ?",
 ];
 
 const WELCOME: Message = {
   role: "assistant",
   content:
-    "Bonjour ! Je suis l'assistant culturel de Puls-Events pour la ville de Brest 👋\n\nPose-moi une question sur les événements à venir : concerts, expositions, spectacles, festivals…",
+    "Bonjour ! Je suis l'assistant culturel de Puls-Events pour la ville de Paris 👋\n\nPose-moi une question sur les événements à venir ce printemps et cet été : concerts, expositions, spectacles, festivals…",
 };
 
 export default function ChatBox() {

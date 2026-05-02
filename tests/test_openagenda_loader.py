@@ -8,6 +8,7 @@ from utils.openagenda_loader import (
     _build_where_clause,
     event_to_document,
     events_to_documents,
+    fetch_city_events,
     load_events_from_snapshot,
 )
 
@@ -24,9 +25,10 @@ def test_fixture_exists_and_non_empty(sample_events):
 
 
 def test_build_where_clause_format():
-    clause = _build_where_clause("Brest", "2024-01-01")
-    assert 'location_city="Brest"' in clause
-    assert "firstdate_begin >= date'2024-01-01'" in clause
+    clause = _build_where_clause("Paris", lookahead_days=30)
+    assert 'location_city="Paris"' in clause
+    assert "lastdate_end >= date'" in clause      # borne basse : pas terminé
+    assert "firstdate_begin <= date'" in clause   # borne haute : commence avant horizon
 
 
 def test_event_to_document_basic_shape(sample_events):
@@ -83,9 +85,8 @@ def test_load_events_from_snapshot_roundtrip(tmp_path, sample_events):
 
 
 @pytest.mark.live
-def test_fetch_brest_events_smoke():
+def test_fetch_city_events_smoke():
     """Test live (nécessite internet). Lance avec: pytest -m live"""
-    from utils.openagenda_loader import fetch_brest_events
-    events = fetch_brest_events(since_days=30, page_size=5, save_snapshot=False)
-    # Le filtre est strict sur Brest, le résultat peut être 0 mais doit être une liste
+    events = fetch_city_events(city="Paris", lookahead_days=30, page_size=5, save_snapshot=False)
+    # Paris a beaucoup d'events, on devrait au moins en trouver quelques-uns
     assert isinstance(events, list)

@@ -9,16 +9,16 @@ Endpoint: https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/even
 import json
 import logging
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Optional
 
 import requests
 
 from .config import (
+    LOOKAHEAD_DAYS,
     OPENAGENDA_BASE_URL,
     RAW_DATA_DIR,
-    SINCE_DAYS,
     TARGET_CITY,
 )
 
@@ -29,47 +29,61 @@ REQUEST_TIMEOUT = 30
 MAX_RETRIES = 3
 
 
-def _build_where_clause(city: str) -> str:
-    """Construit la clause ODSQL pour filtrer par ville et ne garder que les événements
-    en cours ou à venir (lastdate_end >= aujourd'hui).
+def _build_where_clause(city: str, lookahead_days: int) -> str:
+    """Construit la clause ODSQL : events de `city` en cours ou à venir, qui commencent
+    dans les `lookahead_days` prochains jours.
 
-    On utilise `lastdate_end` (et non `firstdate_begin`) pour qu'un festival qui dure
-    plusieurs jours et a déjà commencé reste recommandable jusqu'à sa date de fin.
+    Double borne pour limiter la taille de l'index sur des villes denses comme Paris :
+    - `lastdate_end >= today` : pas terminé
+    - `firstdate_begin <= today + lookahead_days` : commence avant l'horizon
+
+    On utilise `lastdate_end` (et non `firstdate_begin`) pour le seuil bas afin qu'un
+    festival qui dure plusieurs jours et a déjà commencé reste recommandable jusqu'à
+    sa date de fin.
     """
-    today_iso = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    return f'location_city="{city}" AND lastdate_end >= date\'{today_iso}\''
+    today = datetime.now(timezone.utc)
+    today_iso = today.strftime("%Y-%m-%d")
+    horizon_iso = (today + timedelta(days=lookahead_days)).strftime("%Y-%m-%d")
+    return (
+        f'location_city="{city}" '
+        f'AND lastdate_end >= date\'{today_iso}\' '
+        f'AND firstdate_begin <= date\'{horizon_iso}\''
+    )
 
 
-def fetch_brest_events(
+def fetch_city_events(
     city: str = TARGET_CITY,
-    since_days: int = SINCE_DAYS,  # noqa: ARG001 — gardé pour compat ascendante (no-op)
+    lookahead_days: int = LOOKAHEAD_DAYS,
     page_size: int = PAGE_SIZE,
     save_snapshot: bool = True,
     snapshot_dir: Path = RAW_DATA_DIR,
 ) -> list[dict]:
     """
-    Récupère tous les événements Open Agenda **en cours ou à venir** pour une ville
-    (lastdate_end >= aujourd'hui). Pagine jusqu'à épuisement.
+    Récupère tous les événements Open Agenda d'une ville qui sont **en cours ou à venir**
+    et qui commencent dans les `lookahead_days` prochains jours. Pagine jusqu'à épuisement.
 
     Args:
         city: nom de la ville (filtre exact sur location_city).
-        since_days: ignoré (gardé pour compat ascendante). Le filtre temporel est
-            désormais "events futurs uniquement".
+        lookahead_days: fenêtre d'anticipation en jours (default depuis config).
         page_size: taille de page (max 100 sur Opendatasoft).
         save_snapshot: si True, écrit data/raw/events_<city>_<date>.json.
         snapshot_dir: répertoire pour le snapshot.
 
     Returns:
-        Liste brute des records Open Agenda (futurs ou en cours uniquement).
+        Liste brute des records Open Agenda dans la fenêtre temporelle.
     """
-    where = _build_where_clause(city)
+    where = _build_where_clause(city, lookahead_days)
 
     all_events: list[dict] = []
     offset = 0
     total_count: Optional[int] = None
 
     today_iso = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    logger.info(f"Récupération des événements à venir pour '{city}' (à partir du {today_iso})...")
+    horizon_iso = (datetime.now(timezone.utc) + timedelta(days=lookahead_days)).strftime("%Y-%m-%d")
+    logger.info(
+        f"Récupération des événements à venir pour '{city}' "
+        f"(du {today_iso} au {horizon_iso}, soit {lookahead_days} jours)..."
+    )
 
     while True:
         params = {

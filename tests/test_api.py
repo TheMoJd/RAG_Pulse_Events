@@ -57,7 +57,7 @@ def test_root_returns_metadata(client):
 
 
 def test_ask_with_valid_question(client):
-    r = client.post("/ask", json={"question": "Quels concerts à Brest ?"})
+    r = client.post("/ask", json={"question": "Quels concerts à Paris ?"})
     assert r.status_code == 200
     body = r.json()
     assert "answer" in body and "sources" in body

@@ -11,13 +11,14 @@ if not MISTRAL_API_KEY:
     print("⚠️  MISTRAL_API_KEY non défini dans .env — embeddings et chat indisponibles.")
 
 # --- Modèles Mistral ---
-MODEL_NAME = os.getenv("MISTRAL_MODEL", "mistral-small-latest")
+MODEL_NAME = os.getenv("MISTRAL_MODEL", "mistral-medium-latest")
 EMBEDDING_MODEL = "mistral-embed"
 
 # --- Open Agenda (Opendatasoft public dataset) ---
 OPENAGENDA_BASE_URL = "https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/evenements-publics-openagenda/records"
-TARGET_CITY = os.getenv("TARGET_CITY", "Brest")
-SINCE_DAYS = int(os.getenv("SINCE_DAYS", "365"))
+TARGET_CITY = os.getenv("TARGET_CITY", "Paris")
+# Fenêtre d'anticipation : N jours à partir d'aujourd'hui (default 120 = ~4 mois)
+LOOKAHEAD_DAYS = int(os.getenv("LOOKAHEAD_DAYS", "120"))
 
 # --- Chemins ---
 PROJECT_ROOT = Path(__file__).resolve().parent.parent

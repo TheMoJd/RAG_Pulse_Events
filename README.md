@@ -1,6 +1,6 @@
 # Puls-Events — Assistant RAG pour événements culturels
 
-POC d'un chatbot intelligent qui répond aux questions sur les **événements culturels à Brest** en s'appuyant sur les données publiques **Open Agenda**. Le système combine **recherche vectorielle FAISS** et **génération Mistral** orchestrées par **LangChain**, exposé par une **API REST FastAPI** et consommé par un **frontend React** esthétique.
+POC d'un chatbot intelligent qui répond aux questions sur les **événements culturels à venir à Paris** (printemps + été, fenêtre de 4 mois) en s'appuyant sur les données publiques **Open Agenda**. Le système combine **recherche vectorielle FAISS** et **génération Mistral** orchestrées par **LangChain**, exposé par une **API REST FastAPI** et consommé par un **frontend React** esthétique.
 
 > *Développez un assistant pour la recommandation d'événements culturels* — pour Puls-Events (cliente fictive).
 
@@ -8,21 +8,21 @@ POC d'un chatbot intelligent qui répond aux questions sur les **événements cu
 
 ```
 ┌──────────────────────────────────────────────────────────┐
-│  P   Puls-Events                          ●  590 chunks  │
-│      Assistant culturel — Brest              indexés     │
+│  P   Puls-Events                       ●  ~2000 chunks   │
+│      Assistant culturel — Paris             indexés      │
 ├──────────────────────────────────────────────────────────┤
 │                                                          │
-│   👤 Quels concerts à Brest ce week-end ?               │
+│   👤 Quels concerts à Paris ce week-end ?               │
 │                                                          │
 │   🤖 Voici quelques idées :                              │
-│      1. Un imaginaire, créer en sons (Vendredi 30/01)    │
-│      2. Instants baroques (Temple Protestant)            │
-│      3. Concert pop/rock avec Stellen                    │
+│      1. Concert jazz à La Cigale (Vendredi 21h)          │
+│      2. Récital classique à la Philharmonie              │
+│      3. Festival électro à La Villette                   │
 │                                                          │
 │      ┌──────────────────┐  ┌──────────────────┐          │
-│      │ 🎵 Concert Jazz  │  │ 🎭 Festival Yves │          │
-│      │ 📅 Sam 18h       │  │ 📅 14-24 mai     │          │
-│      │ 📍 Cabaret Vaub. │  │ 📍 Vivre La Rue  │          │
+│      │ 🎵 Concert Jazz  │  │ 🎭 Solidays 2026 │          │
+│      │ 📅 Sam 21h       │  │ 📅 26-28 juin    │          │
+│      │ 📍 La Cigale     │  │ 📍 Hippodrome    │          │
 │      │ 87% pertinent    │  │ 79% pertinent    │          │
 │      └──────────────────┘  └──────────────────┘          │
 └──────────────────────────────────────────────────────────┘
@@ -98,7 +98,7 @@ RAG_Pulse_Events/
 │   ├── test_openagenda_loader.py     # 9 tests
 │   ├── test_vector_store.py          # 6 tests (mocks Mistral)
 │   ├── test_api.py                   # 6 tests FastAPI
-│   ├── fixtures/events_sample.json   # 10 events Brest
+│   ├── fixtures/events_sample.json   # 10 events sample (parsing)
 │   └── qa_dataset.json               # 15 Q/R annotées
 ├── indexer.py                        # CLI: fetch → chunks → embed → FAISS
 ├── evaluate_rag.py                   # Pipeline Ragas
@@ -184,19 +184,19 @@ Documentation interactive : `http://localhost:8000/docs`
 ```bash
 curl -X POST http://localhost:8000/ask \
   -H 'Content-Type: application/json' \
-  -d '{"question":"Quels concerts à Brest ce week-end ?"}'
+  -d '{"question":"Quels concerts à Paris ce week-end ?"}'
 ```
 ```json
 {
-  "answer": "Voici quelques idées de concerts à Brest cette semaine : ...",
+  "answer": "Voici quelques idées de concerts à Paris ce week-end : ...",
   "sources": [
     {
-      "title": "La Nuit des conservatoires à Brest",
-      "url": "https://openagenda.com/.../la-nuit-des-conservatoires-a-brest",
-      "daterange": "Vendredi 30 janvier, 17h30",
-      "location_name": "Conservatoire à rayonnement régional de Brest",
+      "title": "Concert jazz à La Cigale",
+      "url": "https://openagenda.com/.../concert-jazz-la-cigale",
+      "daterange": "Samedi 21 juin, 21h00",
+      "location_name": "La Cigale",
       "image": "https://cdn.openagenda.com/main/...",
-      "score": 80.32
+      "score": 87.45
     }
   ]
 }
@@ -215,12 +215,12 @@ curl -X POST http://localhost:8000/rebuild \
 ## 5. Pipeline de données
 
 ```
-1. fetch_brest_events()
+1. fetch_city_events()
    → GET /catalog/datasets/evenements-publics-openagenda/records
-     ?where=location_city="Brest" AND firstdate_begin >= date'2025-04-27'
+     ?where=location_city="Paris" AND lastdate_end >= date'2026-05-01' AND firstdate_begin <= date'2026-08-29'
      &limit=100&offset=…
    → ~506 events
-   → snapshot data/raw/events_brest_<YYYY-MM-DD>.json
+   → snapshot data/raw/events_paris_<YYYY-MM-DD>.json
 
 2. event_to_document()
    → page_content = "Titre: …\nDescription: …\nDates: …\nLieu: …\nMots-clés: …"
@@ -283,8 +283,8 @@ Voir [.env.example](.env.example).
 |---|---|---|
 | `MISTRAL_API_KEY` | *(requis)* | Clé API Mistral |
 | `MISTRAL_MODEL` | `mistral-small-latest` | Modèle de génération |
-| `TARGET_CITY` | `Brest` | Ville cible (filtre `location_city`) |
-| `SINCE_DAYS` | `365` | Profondeur historique en jours |
+| `TARGET_CITY` | `Paris` | Ville cible (filtre `location_city`) |
+| `LOOKAHEAD_DAYS` | `120` | Fenêtre d'anticipation (events qui commencent dans les N prochains jours) |
 
 ---
 
@@ -319,7 +319,7 @@ mondomaine.fr {
 
 ## 10. Pistes d'amélioration
 
-- **Filtrage métier** : exclure les events "France Travail" non culturels — ils représentent ~65% du dataset Brest (lieux *Agence Brest Europe/Marine/Iroise*, mots-clés `recrutement`, `1 jeune 1 solution`) — via un filtre sur `keywords_fr` ou `originagenda_uid`
+- **Filtrage métier** : exclure les events non culturels qui polluent parfois Open Agenda (recrutement, formation pro, salons commerciaux) via un filtre sur `keywords_fr` ou `originagenda_uid`
 - **Reranking** : ajouter un cross-encoder pour réordonner les top-k FAISS
 - **Hybrid search** : combiner BM25 + dense pour mieux gérer les noms propres (lieux, artistes)
 - **Streaming** : utiliser `client.chat.stream()` pour afficher la réponse en streaming dans le frontend

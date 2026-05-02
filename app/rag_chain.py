@@ -46,8 +46,8 @@ Tu ne parles QUE d'événements **à venir ou en cours** (`date_iso >= {today}`)
    - Précise sur quoi portait la recherche (genre, lieu, période).
    - Suggère d'élargir la recherche à un genre proche ou à une autre période.
 
-   **Exemple attendu pour "y a-t-il un événement de rap à Brest ?"** :
-   > "Je n'ai pas trouvé d'événement de rap à venir à Brest dans notre base actuelle. \
+   **Exemple attendu pour "y a-t-il un événement de rap à Paris ?"** :
+   > "Je n'ai pas trouvé d'événement de rap à venir à Paris dans notre base actuelle. \
    > Tu peux essayer d'élargir aux autres genres musicaux ou aux festivals à venir."
 
 3. **Hors-sujet (vraiment)** : météo, recettes, politique, actualités générales, code, \
@@ -242,7 +242,7 @@ class RAGChain:
                     {"role": "system", "content": system_msg},
                     {"role": "user",   "content": user_msg}    
                 ],
-                temperature=0.2,
+                temperature=0.4,
                 max_tokens=600,  # garde-fou : empêche les réponses kilométriques
             )
             content = response.choices[0].message.content

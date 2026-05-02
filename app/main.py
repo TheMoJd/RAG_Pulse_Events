@@ -14,7 +14,7 @@ from app.schemas import (
     RebuildResponse,
 )
 from indexer import run_indexing
-from utils.config import APP_TITLE, MODEL_NAME, SINCE_DAYS, TARGET_CITY
+from utils.config import APP_TITLE, LOOKAHEAD_DAYS, MODEL_NAME, TARGET_CITY
 from utils.vector_store import VectorStoreManager
 
 logging.basicConfig(
@@ -46,8 +46,8 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title=APP_TITLE,
-    description="API RAG pour recommander des événements culturels à Brest "
-    "à partir des données Open Agenda.",
+    description=f"API RAG pour recommander des événements culturels à venir à {TARGET_CITY} "
+    f"(fenêtre de {LOOKAHEAD_DAYS} jours) à partir des données Open Agenda.",
     version="0.1.0",
     lifespan=lifespan,
 )
@@ -95,7 +95,7 @@ def rebuild(req: RebuildRequest = RebuildRequest()) -> RebuildResponse:
     try:
         n_chunks = run_indexing(
             city=TARGET_CITY,
-            since_days=SINCE_DAYS,
+            lookahead_days=LOOKAHEAD_DAYS,
             use_snapshot=req.use_snapshot,
         )
     except Exception as e:

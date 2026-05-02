@@ -29,7 +29,7 @@ export default function App() {
               <h1 className="font-bold text-lg text-slate-900 leading-tight">
                 Puls-Events
               </h1>
-              <p className="text-xs text-slate-500">Assistant culturel — Brest</p>
+              <p className="text-xs text-slate-500">Assistant culturel — Paris</p>
             </div>
           </div>
           <div className="text-right text-xs text-slate-500">

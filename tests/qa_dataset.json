@@ -1,94 +1,94 @@
 {
-  "description": "Jeu de test annoté Q/R pour l'évaluation du système RAG Puls-Events sur Brest. Réponses de référence rédigées à partir des données réelles indexées (snapshot Open Agenda).",
+  "description": "Jeu de test annoté Q/R pour l'évaluation du système RAG Puls-Events sur Paris (printemps + été). Les ground_truths sont rédigés de manière générique car le contenu de l'index Open Agenda évolue chaque semaine. Ils décrivent le type de réponse attendu, pas les événements précis.",
   "dataset": [
     {
       "id": "q1",
-      "question": "Quelles expositions sont organisées à la galerie Le Comoedia ?",
-      "ground_truth": "La galerie Le Comoedia accueille notamment l'exposition 'Esprit 80 – L'art en ébullition', célébrant une décennie d'énergie créative, ainsi que la soirée 'L'Art du Goût' qui associe dégustation et contemplation, et une rencontre avec l'artiste Olivia Clavel.",
-      "category": "lieu_specifique"
-    },
-    {
-      "id": "q2",
-      "question": "Y a-t-il des événements au musée national de la Marine à Brest ?",
-      "ground_truth": "Oui, le musée national de la Marine propose plusieurs événements : la visite flash 'De Brest à l'Arctique' dans le cadre de l'Année de la mer, des créations des élèves de l'École européenne supérieure d'art de Bretagne, et lors des Journées du Patrimoine la visite libre des collections, du château et l'exposition 'Figures de proue'.",
-      "category": "lieu_specifique"
-    },
-    {
-      "id": "q3",
-      "question": "Que se passe-t-il à la médiathèque des Capucins ?",
-      "ground_truth": "La médiathèque François Mitterrand - Les Capucins propose des visites guidées de l'exposition 'Bâtir les livres / La reliure au fil du temps' et de l'atelier de reliure, avec une version en breton également disponible.",
-      "category": "lieu_specifique"
-    },
-    {
-      "id": "q4",
-      "question": "Y a-t-il des concerts prévus à Brest ?",
-      "ground_truth": "Oui, plusieurs concerts sont programmés : 'Un imaginaire, créer en sons' au conservatoire avec des classes d'écriture-composition, 'Instants baroques' au Temple Protestant par les élèves de musique ancienne, et un concert pop/rock avec Stellen dans une maison ancienne des années 30.",
+      "question": "Quels concerts à Paris ce week-end ?",
+      "ground_truth": "Plusieurs concerts ont lieu ce week-end à Paris dans des salles variées (Olympia, Bataclan, Philharmonie, Zénith, La Cigale, Cabaret Sauvage, etc.) couvrant différents genres : pop, rock, jazz, classique, électro. Chaque suggestion mentionne le titre, la date, le lieu et un lien Open Agenda.",
       "category": "thematique"
     },
     {
+      "id": "q2",
+      "question": "Quelles expositions sont à voir à Paris cet été ?",
+      "ground_truth": "Plusieurs expositions sont accessibles dans les grands musées parisiens (Louvre, Centre Pompidou, Musée d'Orsay, Grand Palais, Petit Palais, Musée du Quai Branly), couvrant la peinture, la photographie, l'art contemporain ou l'art ancien.",
+      "category": "thematique"
+    },
+    {
+      "id": "q3",
+      "question": "Festivals de musique à Paris en juin ou juillet ?",
+      "ground_truth": "Plusieurs festivals sont programmés en juin/juillet à Paris (par exemple Solidays, Fnac Live, We Love Green ou des éditions parisiennes d'autres festivals). Les recommandations précisent les dates exactes, le lieu et le lien.",
+      "category": "thematique"
+    },
+    {
+      "id": "q4",
+      "question": "Y a-t-il des événements à la Philharmonie de Paris ?",
+      "ground_truth": "La Philharmonie de Paris propose plusieurs concerts à venir (musique classique, jazz, musiques du monde, programmes éducatifs) ainsi que des expositions thématiques. Les recommandations précisent l'œuvre, le compositeur ou l'artiste, la date et le tarif si disponible.",
+      "category": "lieu_specifique"
+    },
+    {
       "id": "q5",
-      "question": "Quelles activités à Océanopolis ?",
-      "ground_truth": "Océanopolis propose des événements liés à la découverte de l'océan, notamment dans le cadre de l'Année de la mer et de la conférence des Nations Unies pour l'océan.",
+      "question": "Quelles expositions au Centre Pompidou ?",
+      "ground_truth": "Le Centre Pompidou propose plusieurs expositions à venir, couvrant l'art moderne et contemporain, la photographie, le design, ou des rétrospectives d'artistes majeurs. Les recommandations précisent le titre, la période d'ouverture et un lien Open Agenda.",
       "category": "lieu_specifique"
     },
     {
       "id": "q6",
-      "question": "Quels événements pour les Journées du Patrimoine 2025 ?",
-      "ground_truth": "Plusieurs événements sont programmés les 20 et 21 septembre 2025 : visite libre des collections du musée national de la Marine et du château, exposition 'Figures de proue' par les étudiants de l'EESAB, visites de l'atelier de reliure aux Capucins, exposition photos sur l'ancienne gare de Brest, et visite des coulisses de la Maison du Théâtre.",
-      "category": "evenement_recurrent"
+      "question": "Que se passe-t-il au Grand Palais prochainement ?",
+      "ground_truth": "Le Grand Palais (ou ses espaces dédiés comme le Grand Palais Éphémère) accueille plusieurs événements à venir : expositions blockbuster, foires d'art (FIAC, Paris Photo), salons, ou compétitions sportives selon la période.",
+      "category": "lieu_specifique"
     },
     {
       "id": "q7",
-      "question": "Y a-t-il des événements liés à la mer ou à la marine ?",
-      "ground_truth": "Oui, dans le cadre de l'Année de la mer 2025 et de la conférence des Nations Unies pour l'océan, le musée national de la Marine propose des visites flash comme 'De Brest à l'Arctique', des visites libres du château et de ses collections (construction navale, vie au bagne).",
+      "question": "Y a-t-il des spectacles de danse à voir à Paris ?",
+      "ground_truth": "Plusieurs représentations de danse sont programmées à Paris (Opéra Bastille, Palais Garnier, Théâtre du Châtelet, Théâtre de la Ville, Théâtre des Champs-Élysées) — ballet classique, danse contemporaine ou créations chorégraphiques.",
       "category": "thematique"
     },
     {
       "id": "q8",
-      "question": "Quelles expositions photo sont visibles à Brest ?",
-      "ground_truth": "Une exposition photos sur l'ancienne gare de Brest est visible du 19 au 21 septembre 2025 au belvédère de la gare SNCF, présentant l'histoire de cette gare en surplomb de la rade mise en service en 1865.",
+      "question": "Y a-t-il un concert de rap à Paris cet été ?",
+      "ground_truth": "Plusieurs concerts de rap ou hip-hop sont programmés à Paris cet été dans des salles comme l'Accor Arena, le Zénith, l'Olympia, le Bataclan, ou lors de festivals dédiés. Si aucun n'est trouvé dans la base, l'assistant le précise et propose d'élargir aux autres genres musicaux.",
       "category": "thematique"
     },
     {
       "id": "q9",
-      "question": "Que faire à Brest pour un amateur d'art ?",
-      "ground_truth": "Plusieurs options : la galerie d'art Le Comoedia avec l'exposition 'Esprit 80', le musée national de la Marine avec ses collections et expositions temporaires, les créations des étudiants de l'École européenne supérieure d'art de Bretagne, et l'exposition 'Bâtir les livres' à la médiathèque des Capucins.",
+      "question": "Que faire à Paris en famille avec des enfants ?",
+      "ground_truth": "Plusieurs événements adaptés aux familles sont disponibles : spectacles jeune public au Théâtre du Châtelet ou à la Cité de la Musique, animations à la Cité des Sciences, expositions interactives au Palais de la Découverte, ateliers dans les bibliothèques municipales ou parcs.",
       "category": "recommandation_libre"
     },
     {
       "id": "q10",
-      "question": "Y a-t-il des visites guidées disponibles ?",
-      "ground_truth": "Oui, plusieurs visites guidées sont proposées : visite des coulisses de la Maison du Théâtre, visites guidées de l'exposition 'Bâtir les livres' aux Capucins (en français et en breton), visite libre du musée national de la Marine et du château de Brest, rencontre avec l'artiste Olivia Clavel à la galerie Le Comoedia.",
-      "category": "thematique"
+      "question": "Recommande-moi une sortie pour amateur d'art moderne",
+      "ground_truth": "Plusieurs options : expositions au Centre Pompidou, Musée d'Art Moderne de la Ville de Paris (MAM), Palais de Tokyo, Fondation Louis Vuitton ou Bourse de Commerce - Pinault Collection. Les suggestions précisent le titre de l'exposition, la période et un lien.",
+      "category": "recommandation_libre"
     },
     {
       "id": "q11",
-      "question": "Quels festivals sont prévus à Brest ?",
-      "ground_truth": "Le festival 'Brest La Fest'Yves 2026' se déroule du 14 au 24 mai 2026 dans le cadre de la Fête de la Bretagne, organisé par Vivre La Rue.",
+      "question": "Y a-t-il des visites guidées à Notre-Dame ou autour ?",
+      "ground_truth": "Plusieurs visites guidées du quartier de l'Île de la Cité, de la Sainte-Chapelle, ou de la cathédrale Notre-Dame de Paris (selon l'avancée de la réouverture) sont proposées. Les recommandations précisent le point de rendez-vous, la durée et le tarif.",
       "category": "thematique"
     },
     {
       "id": "q12",
-      "question": "Y a-t-il un Café des Sciences à Brest ?",
-      "ground_truth": "Oui, un Café des Sciences est organisé le mardi 29 avril 2025 à 18h30 à Brest.",
-      "category": "evenement_specifique"
+      "question": "Quels événements gratuits à Paris prochainement ?",
+      "ground_truth": "Plusieurs événements gratuits sont accessibles : concerts en plein air dans les parcs, expositions dans les musées municipaux les premiers dimanches du mois, animations dans les bibliothèques, performances de rue, ou la Fête de la Musique le 21 juin.",
+      "category": "thematique"
     },
     {
       "id": "q13",
-      "question": "Quelles animations sportives sont proposées à Brest ?",
-      "ground_truth": "L'événement 'Mai à Vélo 2025' se déroule du 1er au 31 mai 2025, avec un mois entier d'animations autour de la pratique du vélo.",
+      "question": "Y a-t-il des projections de films en plein air cet été à Paris ?",
+      "ground_truth": "Le Cinéma en plein air de La Villette propose chaque été des projections gratuites sur grand écran. D'autres événements similaires existent dans les parcs parisiens ou en bord de Seine pendant Paris Plages.",
       "category": "thematique"
     },
     {
       "id": "q14",
-      "question": "Que peut-on découvrir au château de Brest ?",
-      "ground_truth": "Le château de Brest abrite le musée national de la Marine et propose pendant les Journées du Patrimoine 2025 une visite libre du parcours permanent couvrant l'histoire du château, la construction navale, la vie au bagne et la guerre d'Indépendance américaine, ainsi que l'exposition 'Figures de proue' avec les étudiants de l'EESAB.",
-      "category": "lieu_specifique"
+      "question": "Quels événements littéraires ou rencontres avec des auteurs à Paris ?",
+      "ground_truth": "Plusieurs rencontres d'auteurs, signatures, lectures publiques ou cafés littéraires sont organisés à Paris (BNF, librairies indépendantes, Maison de la Poésie, médiathèques municipales). Les recommandations précisent l'auteur, le lieu et la date.",
+      "category": "thematique"
     },
     {
       "id": "q15",
-      "question": "Quelle est la capitale de la France ?",
-      "ground_truth": "Cette question est hors du domaine couvert par l'assistant. L'assistant culturel Puls-Events ne répond qu'aux questions sur les événements culturels à Brest et invite l'utilisateur à reformuler sa requête sur ce thème.",
+      "question": "Quelle est la météo à Paris demain ?",
+      "ground_truth": "Cette question est hors du domaine couvert par l'assistant. L'assistant culturel Puls-Events ne répond qu'aux questions sur les événements culturels à venir à Paris et invite l'utilisateur à reformuler sa requête sur ce thème.",
       "category": "hors_domaine"
     }
   ]

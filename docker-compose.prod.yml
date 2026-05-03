@@ -1,0 +1,57 @@
+# Production compose pour le VPS (derrière Caddy)
+#
+# Différences avec docker-compose.yml (dev/local) :
+#   - Aucun port exposé : Caddy gère 80/443 sur le VPS
+#   - Frontend rejoint le réseau Docker partagé "web" → joignable par Caddy
+#   - API isolée sur un réseau "internal" → pas de collision DNS avec les
+#     autres apps du VPS (qui peuvent aussi avoir un service nommé "api")
+#   - Pas de "container_name" figé → Compose génère le nom standard
+#     "rag-pulse-events-<service>-1", attendu par le Caddyfile
+#   - Frontend dépend du healthcheck de l'API → évite les 502 au démarrage
+#
+# Lancement :
+#   docker compose -f docker-compose.prod.yml up -d --build
+#
+# Construction initiale de l'index FAISS (après le 1er up) :
+#   curl -X POST -u admin:<password> https://rag-pulse-events.duckdns.org/api/rebuild \
+#        -H 'Content-Type: application/json' -d '{"use_snapshot": false}'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    env_file: .env
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      # Persistance de l'index FAISS et des snapshots Open Agenda entre redéploiements
+      - ./vector_db:/app/vector_db
+      - ./data:/app/data
+    restart: unless-stopped
+    networks:
+      - internal
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      # 30s laisse le temps à FAISS de charger l'index au boot
+      start_period: 30s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - web       # exposé à Caddy
+      - internal  # pour parler à l'API via nginx proxy_pass http://api:8000/
+
+networks:
+  web:
+    external: true
+  internal:

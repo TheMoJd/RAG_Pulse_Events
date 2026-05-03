@@ -10,7 +10,7 @@ type Message = {
 };
 
 const SUGGESTIONS = [
-  "Quels concerts à voir à Paris ce week-end ?",
+  "Quels concerts à voir à Paris prochainement ?",
   "Quelles expositions à voir à Paris cet été ?",
   "Festivals de musique à Paris ce printemps ?",
   "Que faire à Paris en famille ?",

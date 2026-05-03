@@ -47,7 +47,7 @@ Tous les liens pointent vers la branche `main`.
 |---|---|
 | [`frontend/`](https://github.com/TheMoJd/RAG_Pulse_Events/tree/main/frontend) (React + TS + Tailwind) | Interface chat avec rendu Markdown (`react-markdown`), cartes événements cliquables, suggestions contextuelles. |
 | [`regenerate_qa_dataset.py`](https://github.com/TheMoJd/RAG_Pulse_Events/blob/main/regenerate_qa_dataset.py) | Outil reproduisant la méthodologie v1 → v2 (model-generated GT + validation humaine). |
-| [`evaluation_results.json`](https://github.com/TheMoJd/RAG_Pulse_Events/blob/main/evaluation_results.json) + [`evaluation_results_v2.json`](https://github.com/TheMoJd/RAG_Pulse_Events/blob/main/evaluation_results_v2.json) | Snapshots des deux passes Ragas, preuves de l'amélioration. |
+| [`evaluation_results_v2.json`](https://github.com/TheMoJd/RAG_Pulse_Events/blob/main/evaluation_results_v2.json) | Snapshots des deux passes Ragas, preuves de l'amélioration. |
 | [`data/raw/events_paris_2026-05-02.json`](https://github.com/TheMoJd/RAG_Pulse_Events/blob/main/data/raw/events_paris_2026-05-02.json) | Snapshot daté des données Open Agenda → reproductibilité offline. |
 
 ---
